@@ -19,12 +19,13 @@ public class Main {
             if (file[i].isDirectory()) {
                 System.out.println(sprtr + "-> " + file[i].getName() + " (folder)"+ k);
                 k++;
-                new Main().listfiles(file[i].listFiles(), sprtr + "\t");
+              listfiles(file[i].listFiles(), sprtr + "\t");
             }
             else {
                 System.out.println(sprtr + file[i].getName()+" (file)"+b);
                 b++;
+                //hello
             }
         }
     }
-}
+}	
