@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class FibAsyn {
+public class Lab3 {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         Scanner scanner = new Scanner(System.in);
