@@ -14,12 +14,14 @@ public class Main {
         long time1 = System.currentTimeMillis();
         int sleep=1;
         // Якщо зрівнювати з традиційним методом (цикл)  то thread.sleep зі зміною sleep =1    у данному випадку не має жодної ваги
+      
+        Arrays.stream(first).parallel().forEach(i -> {result[i] = first[i] * second[i];
         try {
             Thread.sleep(sleep);
-            Arrays.stream(first).parallel().forEach(i -> result[i] = first[i] * second[i]);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+                });
 
 
 
