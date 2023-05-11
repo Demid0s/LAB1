@@ -14,7 +14,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Thread t1 = new Thread(() -> {
             while (counter < 240) {
                 try {
