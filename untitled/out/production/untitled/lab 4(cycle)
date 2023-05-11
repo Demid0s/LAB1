@@ -1,0 +1,39 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        long time1 = System.currentTimeMillis();
+        int[] first = new int[10000];
+        int[] second = new int[10000];
+        int[] result = new int[10000];
+
+        // заповнення масивів довільними значеннями
+        for (int i = 0; i < 10000; i++) {
+            first[i] = (int) (Math.random() * 100 +1);
+            second[i] = (int) (Math.random() * 100 +1);
+        }
+        int sleep=0;
+        // зі зміною sleep=1   час роботи збільшується на  1 мілісекунду * на кільсть ітерацій
+        try {
+
+            for (int i = 0; i < 10000; i++) {
+                Thread.sleep(sleep);
+                result[i] = first[i] * second[i];
+            }
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // перемноження елементів масивів
+        for (int i = 0; i < 10000; i++) {
+            result[i] = first[i] * second[i];
+        }
+
+
+     //   System.out.println("Input1: " + Arrays.toString(first));
+      //  System.out.println("Input2: " + Arrays.toString(second));
+        System.out.println("Result: " + Arrays.toString(result));
+        System.out.printf("sync : %s\n", System.currentTimeMillis() - time1);
+    }
+}
