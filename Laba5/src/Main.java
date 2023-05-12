@@ -15,38 +15,16 @@ public class Main {
             e.printStackTrace();
         }
         Thread t1 = new Thread(() -> {
-            while (counter < 240) {
-                try {
-                    Thread.sleep(250);
-                    writer[0].write(String.format("Thread 1, %s, %d\n", LocalTime.now(), counter));
-                    counter++;
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            extracted(writer,250);
         });
-
         Thread t2 = new Thread(() -> {
-            while (counter < 240) {
-                try {
-                    Thread.sleep(500);
-                    writer[0].write(String.format("Thread 2, %s, %d\n", LocalTime.now(), counter));
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            extracted(writer,500);
+        });
+        Thread t3 = new Thread(() -> {
+            extracted(writer,1000);
         });
 
-        Thread t3 = new Thread(() -> {
-            while (counter < 240) {
-                try {
-                    Thread.sleep(1000);
-                    writer[0].write(String.format("Thread 3, %s, %d\n", LocalTime.now(), counter));
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
 
         t1.start();
         t2.start();
@@ -60,6 +38,35 @@ public class Main {
             writer[0].close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    private static void extracted(FileWriter[] writer,int n) {
+        int thread_num=0;
+        int sleep=0;
+
+        while (counter < 240) {
+            try {
+                if(n==250){
+                    sleep=250;
+                    thread_num=1;
+                    counter++;
+                }
+                if(n==500){
+                    sleep=500;
+                    thread_num=2;
+                }
+                if(n==1000){
+                    sleep=1000;
+                    thread_num=3;
+                }
+                Thread.sleep(sleep);
+                writer[0].write(String.format("Thread %d, %s, %d\n",thread_num, LocalTime.now(), counter));
+
+            } catch (InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
